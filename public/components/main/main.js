@@ -7,7 +7,11 @@ import {
   EuiPageContent,
   EuiPageContentHeader,
   EuiPageContentBody,
-  EuiText
+  EuiText,
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiButton,
 } from '@elastic/eui';
 import { FormattedMessage } from '@kbn/i18n/react';
 
@@ -15,6 +19,20 @@ export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+
+  onSearchTextChange(event) {
+	  this.state.searchTerm = event.target.value;
+  }
+
+  searchData(){
+	const { httpClient } = this.props;
+    	httpClient.get('../api/fsm_plugin/pfsenseblocked/'+this.state.searchTerm).then((response) => {
+      		this.setState({ resp: response.data });
+		window.alert(this.state.resp); //return in browser pop-up Window
+		console.log(this.state.resp); //return in console
+  	});
   }
 
   componentDidMount() {
@@ -70,6 +88,17 @@ export class Main extends React.Component {
                   />
                 </p>
               </EuiText>
+	      <EuiForm>
+		<EuiFormRow
+			label="Search Field"
+			helpText="Please enter search value"
+		>
+		<EuiFieldText name="search_term" onChange={(event) => this.onSearchTextChange(event)}/>
+		</EuiFormRow>
+		<EuiButton  fill onClick={() => this.searchData()}>
+		Search
+		</EuiButton>
+		</EuiForm>
             </EuiPageContentBody>
           </EuiPageContent>
         </EuiPageBody>
