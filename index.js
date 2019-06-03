@@ -1,4 +1,5 @@
 import exampleRoute from './server/routes/example';
+import pfSenseBlockedRoute from './server/routes/pfsenseblocked';
 
 export default function (kibana) {
   return new kibana.Plugin({
@@ -11,7 +12,8 @@ export default function (kibana) {
         main: 'plugins/fsm_plugin/app',
       },
       hacks: [
-        'plugins/fsm_plugin/hack'
+        'plugins/fsm_plugin/hack',
+	'plugins/fsm_plugin/hack2'
       ],
       styleSheetPaths: require('path').resolve(__dirname, 'public/app.scss'),
     },
@@ -24,7 +26,8 @@ export default function (kibana) {
 
     init(server, options) { // eslint-disable-line no-unused-vars
       // Add server routes and initialize the plugin here
-      exampleRoute(server);
+      	exampleRoute(server);
+	pfSenseBlockedRoute(server);
     }
   });
 }

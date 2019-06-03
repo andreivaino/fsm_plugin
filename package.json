@@ -18,7 +18,10 @@
     "build": "plugin-helpers build"
   },
   "dependencies": {
-    "@kbn/i18n": "link:../../kibana/packages/kbn-i18n"
+    "@kbn/i18n": "link:../../kibana/packages/kbn-i18n",
+    "jquery": "^3.4.1",
+    "@elastic/eui": "^11.0.1",
+    "es6": "npm:@elastic/elasticsearch@^6.7.0"
   },
   "devDependencies": {
     "@elastic/eslint-config-kibana": "link:../../kibana/packages/eslint-config-kibana",
