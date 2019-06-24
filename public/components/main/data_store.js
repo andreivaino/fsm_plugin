@@ -76,25 +76,27 @@ function httpGet(theUrl){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, false); // true for asynchronous 
     xmlHttp.send(null);
-	//parses into JSON
+	  //parses into JSON
     return JSON.parse(xmlHttp.responseText);
 }
-function getQueryData(url){
-  const data = httpGet(url).response; 
+const getQueryData = (url) => {
+  const data = httpGet(url).response;
+  console.log(data); 
   const re_data = []
   
   data.forEach(function (item, index){
     re_data.push({
         id : item._id,
-        index : item._index,
+        index : index,
         src_ip : item._source.src_ip,
         src_port : item._source.src_port,
-        timestamp : item._source.message,
+        timestamp : item._source['@timestamp'],
         dest_ip : item._source.dest_ip,
         dest_port : item._source.dest_port,
         message : item._source.message 
       })
   });
+  console.log('results:' + re_data.length);
 
   return re_data;
   
@@ -122,7 +124,7 @@ const createUsers = countries => {
 export const createDataStore = () => {
   const countries = createCountries();
   const users = createUsers(countries);
-  const data = getQueryData('/iyg/api/fsm_plugin/pfsenseblocked'); 
+  const data = getQueryData('../api/fsm_plugin/pfsenseblocked'); 
   //can type data in console to return values
   //good for testing purposes to see what values is stored in data
   window.data=data;
@@ -133,7 +135,7 @@ export const createDataStore = () => {
     data,
     findUsers: (pageIndex, pageSize, sortField, sortDirection) => {
       let items;
-
+      console.log('findUsers', pageIndex, pageSize, sortField, sortDirection)
       if (sortField) {
         items = data
           .slice(0)
