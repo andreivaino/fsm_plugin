@@ -70,38 +70,6 @@ const github = [
   'silne30',
 ];
 
-
-
-function httpGet(theUrl){
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", theUrl, false); // true for asynchronous 
-    xmlHttp.send(null);
-	  //parses into JSON
-    return JSON.parse(xmlHttp.responseText);
-}
-const getQueryData = (url) => {
-  const data = httpGet(url).response;
-  console.log(data); 
-  const re_data = []
-  
-  data.forEach(function (item, index){
-    re_data.push({
-        id : item._id,
-        index : index,
-        src_ip : item._source.src_ip,
-        src_port : item._source.src_port,
-        timestamp : item._source['@timestamp'],
-        dest_ip : item._source.dest_ip,
-        dest_port : item._source.dest_port,
-        message : item._source.message 
-      })
-  });
-  console.log('results:' + re_data.length);
-
-  return re_data;
-  
-}
-
 const dob = new Date(1980, 1, 1);
 
 const createUsers = countries => {
@@ -124,26 +92,22 @@ const createUsers = countries => {
 export const createDataStore = () => {
   const countries = createCountries();
   const users = createUsers(countries);
-  const data = getQueryData('../api/fsm_plugin/pfsenseblocked'); 
-  //can type data in console to return values
-  //good for testing purposes to see what values is stored in data
-  window.data=data;
 
   return {
     countries,
     users,
-    data,
+
     findUsers: (pageIndex, pageSize, sortField, sortDirection) => {
       let items;
-      console.log('findUsers', pageIndex, pageSize, sortField, sortDirection)
+
       if (sortField) {
-        items = data
+        items = users
           .slice(0)
           .sort(
             Comparators.property(sortField, Comparators.default(sortDirection))
           );
       } else {
-        items = data;
+        items = users;
       }
 
       let pageOfItems;

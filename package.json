@@ -1,6 +1,6 @@
 {
   "name": "fsm_plugin",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Federated Security Module Plugin",
   "main": "index.js",
   "kibana": {
@@ -20,17 +20,8 @@
   "dependencies": {
     "@kbn/i18n": "link:../../kibana/packages/kbn-i18n",
     "jquery": "^3.4.1",
-    "@elastic/eui": "^12.0.0",
-    "es6": "npm:@elastic/elasticsearch@^6.7.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "@elastic/datemath": "^5.0.2",
-    "react-scripts": "^1.1.4",
-    "@babel/polyfill": "^7.4.4",
-    "moment": "^2.24.0",
-    "focus-trap-react": "^6.0.0",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1"
+    "@elastic/eui": "^11.0.1",
+    "es6": "npm:@elastic/elasticsearch@^6.7.0"
   },
   "devDependencies": {
     "@elastic/eslint-config-kibana": "link:../../kibana/packages/eslint-config-kibana",
