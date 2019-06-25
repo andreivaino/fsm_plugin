@@ -41,18 +41,17 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      sortField: 'index',
+      sortField: 'firstName',
       sortDirection: 'asc',
     };
 
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-
     const { index: pageIndex, size: pageSize } = page;
 
     const { field: sortField, direction: sortDirection } = sort;
-    console.log('onTableChange', page, sort, pageIndex, pageSize, sortField, sortDirection)
+
     this.setState({
       pageIndex,
       pageSize,
@@ -61,21 +60,10 @@ export class Table extends Component {
     });
   };
 
-  componentWillUnmount(){
-    console.log('table unmounted')
-  }
-
-  componentDidCatch(error, info){
-    console.log('didCatch', error, info);
-  }
-  static getDerivedStateFromError(error){
-    console.log('getDerivedStateFromError', error)
-    return {hasError : 'true'};
-  }
   render() {
 	  //object destructoring - defines four variables and gets their values from this.state
     const { pageIndex, pageSize, sortField, sortDirection } = this.state;
-    console.log('render', this.state)
+   
     const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
@@ -85,11 +73,28 @@ export class Table extends Component {
 
     const columns = [
       {
+        field: 'timestamp',
+        name: 'Timestamp',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          render: item => (
+            <span>
+              {item._index} {'abcd'}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+      {
         field: 'index',
         name: 'Index',
         sortable: true,
         truncateText: true,
-        mobileoptions: {
+        mobileOptions: {
           render: item => (
             <span>
               {item.index}
@@ -102,14 +107,14 @@ export class Table extends Component {
         },
       },
       {
-        field: 'timestamp',
-        name: 'Timestamp',
+        field: 'message',
+        name: 'message',
         sortable: true,
         truncateText: true,
-        mobileoptions: {
+        mobileOptions: {
           render: item => (
             <span>
-              {item.timestamp}
+              {item.message}
             </span>
           ),
           header: false,
@@ -119,14 +124,31 @@ export class Table extends Component {
         },
       },
       {
-        field: 'message',
-        name: 'Message',
+        field: 'src_port',
+        name: 'Source Port',
         sortable: true,
         truncateText: true,
-        mobileoptions: {
+        mobileOptions: {
           render: item => (
             <span>
-              {item.message}
+              {item.src_port}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+      {
+        field: 'src_ip', //variable name
+        name: 'Source IP',  //name of the column
+        sortable: true,
+        truncateText: true,
+        mobileOptions: { //might be used for mobile data showing
+          render: item => (
+            <span>
+              {item.src_ip}
             </span>
           ),
           header: false,

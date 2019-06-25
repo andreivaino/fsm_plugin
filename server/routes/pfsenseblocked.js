@@ -22,8 +22,7 @@ export default function (server) {
 			var body = null;
 			await client.search({
 				_source: ["@timestamp", "src_ip", "src_port", "proto", "dest_ip", "dest_port", "message"],
-				index: 'pfsense-*',
-				size: 10
+				index: 'pfsense-*'
 			}).then(function (body) {
 				hits = body.hits.hits;
 				body = body;
