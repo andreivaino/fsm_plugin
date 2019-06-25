@@ -41,39 +41,18 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      sortField: 'id',
+      sortField: 'index',
       sortDirection: 'asc',
     };
 
-    //this.onTableChange = this.onTableChange.bind(this);
-
   }
 
-/*
   onTableChange = ({ page = {}, sort = {} }) => {
 
     const { index: pageIndex, size: pageSize } = page;
 
     const { field: sortField, direction: sortDirection } = sort;
-
-    console.log('onTableChange',  page, sort, pageIndex, pageSize, sortField, sortDirection)
-    
-    this.setState(
-      {
-        pageIndex,
-        pageSize,
-        sortField,
-        sortDirection,
-      }
-    );
-  }
-*/
-
-  onTableChange = ({ page = {}, sort = {} }) => {
-    const { index: pageIndex, size: pageSize } = page;
-
-    const { field: sortField, direction: sortDirection } = sort;
-
+    console.log('onTableChange', page, sort, pageIndex, pageSize, sortField, sortDirection)
     this.setState({
       pageIndex,
       pageSize,
@@ -81,13 +60,22 @@ export class Table extends Component {
       sortDirection,
     });
   };
-  
-  
-  
+
+  componentWillUnmount(){
+    console.log('table unmounted')
+  }
+
+  componentDidCatch(error, info){
+    console.log('didCatch', error, info);
+  }
+  static getDerivedStateFromError(error){
+    console.log('getDerivedStateFromError', error)
+    return {hasError : 'true'};
+  }
   render() {
 	  //object destructoring - defines four variables and gets their values from this.state
     const { pageIndex, pageSize, sortField, sortDirection } = this.state;
-
+    console.log('render', this.state)
     const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
@@ -96,66 +84,45 @@ export class Table extends Component {
     );
 
     const columns = [
-	  {
-        field: 'id',
-        name: 'id',
-		//dataType: 'date',
+      {
+        field: 'index',
+        name: 'Index',
         sortable: true,
         truncateText: true,
-		//render: date => formatDate(date, 'shortDateTime')
+        mobileoptions: {
+          render: item => (
+            <span>
+              {item.index}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
       },
-	  {
-        field: 'proto',
-        name: 'Protocol',
-        truncateText: false,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
+      {
+        field: 'timestamp',
+        name: 'Timestamp',
+        sortable: true,
+        truncateText: true,
+        mobileoptions: {
+          render: item => (
+            <span>
+              {item.timestamp}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
         },
-      }, 
-	  {
-        field: 'src_ip',
-        name: 'Source IP',
-        truncateText: false,
-		sortable: true,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'src_port',
-        name: 'Source Port',
-        truncateText: false,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'dest_ip',
-        name: 'Destination IP',
-        truncateText: false,
-		sortable: true,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'dest_port',
-        name: 'Destination Port',
-        truncateText: false,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
+      },
       {
         field: 'message',
         name: 'Message',
         sortable: true,
-        truncateText: false,
+        truncateText: true,
         mobileoptions: {
           render: item => (
             <span>
@@ -169,7 +136,7 @@ export class Table extends Component {
         },
       },
     ];
-	
+
     const pagination = {
       pageIndex: pageIndex,
       pageSize: pageSize,
