@@ -76,8 +76,8 @@ export class Main extends React.Component {
               </EuiTitle>
             </EuiPageContentHeader>
             <EuiPageContentBody>
-			
-			{tabval.render()}
+
+
 
               <EuiText>
                 <h3>
@@ -105,7 +105,7 @@ export class Main extends React.Component {
 		Search
 		</EuiButton>
 		</EuiForm>
-                      
+                      {tabval.render()}
             </EuiPageContentBody>
           </EuiPageContent>
         </EuiPageBody>

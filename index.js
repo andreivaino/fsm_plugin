@@ -7,13 +7,13 @@ export default function (kibana) {
     name: 'fsm_plugin',
     uiExports: {
       app: {
-        title: 'FSM Plugin',
+        title: 'Fsm Plugin',
         description: 'Federated Security Module Plugin',
         main: 'plugins/fsm_plugin/app',
       },
       hacks: [
         'plugins/fsm_plugin/hack',
-        'plugins/fsm_plugin/hack2'
+	'plugins/fsm_plugin/hack2'
       ],
       styleSheetPaths: require('path').resolve(__dirname, 'public/app.scss'),
     },
@@ -27,7 +27,7 @@ export default function (kibana) {
     init(server, options) { // eslint-disable-line no-unused-vars
       // Add server routes and initialize the plugin here
       	exampleRoute(server);
-        pfSenseBlockedRoute(server);
+	pfSenseBlockedRoute(server);
     }
   });
 }
