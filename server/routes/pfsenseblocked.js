@@ -12,7 +12,7 @@ export default function (server) {
 	//this is a JSON object being sent to server.route
 	server.route({
 		// brackets { } mean it will be automatically parsed as a variable
-		path: '/api/fsm_plugin/pfsenseblocked/{searchterm}',
+		path: '/api/fsm_plugin/pfsenseblocked',
 		method: 'GET',
 		//this is async, so we use await to wait until a value is returned
 		//you are defining nested functions
@@ -21,12 +21,13 @@ export default function (server) {
 			var hits = 0;
 			var body = null;
 			await client.search({
+				_source: ["@timestamp", "src_ip", "src_port", "proto", "dest_ip", "dest_port", "message"],
 				index: 'pfsense-*',
-				q: query,
+				size: 20
 			}).then(function (body) {
 				hits = body.hits.hits;
 				body = body;
-				console.log(hits);
+				//console.log(hits);
 			}, function (error) {
 				console.trace(error.message);
 			});

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   EuiPage,
   EuiPageHeader,
@@ -14,6 +14,8 @@ import {
   EuiButton,
 } from '@elastic/eui';
 import { FormattedMessage } from '@kbn/i18n/react';
+import { Table } from './table.js'
+
 
 export class Main extends React.Component {
   constructor(props) {
@@ -30,8 +32,8 @@ export class Main extends React.Component {
 	const { httpClient } = this.props;
     	httpClient.get('../api/fsm_plugin/pfsenseblocked/'+this.state.searchTerm).then((response) => {
       		this.setState({ resp: response.data });
-		window.alert(this.state.resp); //return in browser pop-up Window
-		console.log(this.state.resp); //return in console
+		//window.alert(this.state.resp); //return in browser pop-up Window
+		//console.log(this.state.resp); //return in console
   	});
   }
 
@@ -46,6 +48,7 @@ export class Main extends React.Component {
     });
   }
   render() {
+    const tabval = new Table();
     const { title } = this.props;
     return (
       <EuiPage>
@@ -73,6 +76,9 @@ export class Main extends React.Component {
               </EuiTitle>
             </EuiPageContentHeader>
             <EuiPageContentBody>
+			
+			{tabval.render()}
+
               <EuiText>
                 <h3>
                   <FormattedMessage
@@ -99,6 +105,7 @@ export class Main extends React.Component {
 		Search
 		</EuiButton>
 		</EuiForm>
+                      
             </EuiPageContentBody>
           </EuiPageContent>
         </EuiPageBody>
