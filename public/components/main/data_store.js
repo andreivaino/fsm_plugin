@@ -122,7 +122,7 @@ const createUsers = countries => {
 export const createDataStore = () => {
   const countries = createCountries();
   const users = createUsers(countries);
-  const data = getQueryData('/iyg/api/fsm_plugin/pfsenseblocked'); 
+  const data = getQueryData('../api/fsm_plugin/pfsenseblocked'); 
   //can type data in console to return values
   //good for testing purposes to see what values is stored in data
   window.data=data;
