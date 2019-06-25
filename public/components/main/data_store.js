@@ -13,25 +13,20 @@ const httpGet = (theUrl) => {
 
 //Parse the data into an array
 const getQueryData = (url) => {
-  const data = httpGet(url).response; 
-  const re_data = []
-  
-  data.forEach(function (item, index){
-    re_data.push({
-        id : index,
-		timestamp : item._source['@timestamp'],
-        src_ip : item._source.src_ip,
-        src_port : item._source.src_port,
-		proto: item._source.proto,
-        dest_ip : item._source.dest_ip,
-        dest_port : item._source.dest_port,
-        message : item._source.message 
-      })
-  });
-  console.log('results:' + re_data.length);
+  //const data = httpGet(url).response; 
 
-  return re_data;
-  
+  return times(20, index => {
+    return {
+      id: index,
+      timestamp : 'timestamp',
+      src_ip :   'source.src_ip',
+      src_port : 'source.src_port',
+      proto:     'source.proto',
+      dest_ip :  'source.dest_ip',
+      dest_port : 'source.dest_port',
+      message :  'source.message' 
+    };
+  });
 }
 
 export const createDataStore = () => {
@@ -39,7 +34,7 @@ export const createDataStore = () => {
   const data = getQueryData('../api/fsm_plugin/pfsenseblocked'); 
   //can type data in console to return values
   //good for testing purposes to see what values is stored in data
-  window.data=data;
+  //window.data=data;
 
   return {
     data,
