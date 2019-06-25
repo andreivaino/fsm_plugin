@@ -41,18 +41,17 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      sortField: 'index',
+      sortField: 'id',
       sortDirection: 'asc',
     };
 
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
-
     const { index: pageIndex, size: pageSize } = page;
 
     const { field: sortField, direction: sortDirection } = sort;
-    console.log('onTableChange', page, sort, pageIndex, pageSize, sortField, sortDirection)
+
     this.setState({
       pageIndex,
       pageSize,
@@ -61,22 +60,11 @@ export class Table extends Component {
     });
   };
 
-  componentWillUnmount(){
-    console.log('table unmounted')
-  }
-
-  componentDidCatch(error, info){
-    console.log('didCatch', error, info);
-  }
-  static getDerivedStateFromError(error){
-    console.log('getDerivedStateFromError', error)
-    return {hasError : 'true'};
-  }
   render() {
 	  //object destructoring - defines four variables and gets their values from this.state
     const { pageIndex, pageSize, sortField, sortDirection } = this.state;
-    console.log('render', this.state)
-    const { pageOfItems, totalItemCount } = store.findUsers(
+   
+   const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
       sortField,
@@ -84,12 +72,12 @@ export class Table extends Component {
     );
 
     const columns = [
-      {
-        field: 'index',
+	  {
+        field: 'id',
         name: 'Index',
         sortable: true,
         truncateText: true,
-        mobileoptions: {
+        mobileOptions: {
           render: item => (
             <span>
               {item.index}
@@ -104,12 +92,20 @@ export class Table extends Component {
       {
         field: 'timestamp',
         name: 'Timestamp',
+		dataType: 'date',
+        render: date => formatDate(date, 'iso8601'),
         sortable: true,
         truncateText: true,
-        mobileoptions: {
+      },
+      {
+        field: 'src_ip', //variable name
+        name: 'Source IP',  //name of the column
+        sortable: true,
+        truncateText: true,
+        mobileOptions: { //might be used for mobile data showing
           render: item => (
             <span>
-              {item.timestamp}
+              {item.src_ip}
             </span>
           ),
           header: false,
@@ -118,12 +114,63 @@ export class Table extends Component {
           fullWidth: true,
         },
       },
-      {
+	  {
+        field: 'src_port',
+        name: 'Source Port',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          render: item => (
+            <span>
+              {item.src_port}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+	        {
+        field: 'dest_ip', //variable name
+        name: 'Destination IP',  //name of the column
+        sortable: true,
+        truncateText: true,
+        mobileOptions: { //might be used for mobile data showing
+          render: item => (
+            <span>
+              {item.src_ip}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+	  {
+        field: 'dest_port',
+        name: 'Destination Port',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          render: item => (
+            <span>
+              {item.src_port}
+            </span>
+          ),
+          header: false,
+          truncateText: false,  
+          enlarge: true,
+          fullWidth: true,
+        },
+      },
+	  {
         field: 'message',
         name: 'Message',
         sortable: true,
-        truncateText: true,
-        mobileoptions: {
+        truncateText: false,
+        mobileOptions: {
           render: item => (
             <span>
               {item.message}
@@ -138,15 +185,16 @@ export class Table extends Component {
     ];
 
     const pagination = {
-      pageIndex: pageIndex,
-      pageSize: pageSize,
-      totalItemCount: totalItemCount,
-      pageSizeOptions: [3, 5, 8],
+      pageIndex: pageIndex,             //The current page (zero-based) index
+      pageSize: pageSize,               //The maximum number of items that can be shown in a single page
+      totalItemCount: totalItemCount,   //The total number of items the page is "sliced" of
+      pageSizeOptions: [3, 5, 8],       //Configures the page size dropdown options
+	  hidePerPageOptions: true,         //Hides the page size dropdown
     };
-
+	
     const sorting = {
       sort: {
-        field: sortField,
+        field: sortField,               //Indicates the property/field to sort on
         direction: sortDirection,
       },
     };
@@ -164,3 +212,5 @@ export class Table extends Component {
     );
   }
 }
+
+export default Table;

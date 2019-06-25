@@ -16,7 +16,6 @@ import {
 import { FormattedMessage } from '@kbn/i18n/react';
 import { Table } from './table.js'
 
-
 export class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -47,11 +46,12 @@ export class Main extends React.Component {
       this.setState({ time: resp.data.time });
     });
   }
+  
   render() {
-    const tabval = new Table();
+	
     const { title } = this.props;
     return (
-      <EuiPage>
+     <EuiPage>
         <EuiPageBody>
           <EuiPageHeader>
             <EuiTitle size="l">
@@ -76,9 +76,9 @@ export class Main extends React.Component {
               </EuiTitle>
             </EuiPageContentHeader>
             <EuiPageContentBody>
-
-
-
+			
+			<Table />
+			  
               <EuiText>
                 <h3>
                   <FormattedMessage
@@ -105,7 +105,7 @@ export class Main extends React.Component {
 		Search
 		</EuiButton>
 		</EuiForm>
-                      {tabval.render()}
+		
             </EuiPageContentBody>
           </EuiPageContent>
         </EuiPageBody>

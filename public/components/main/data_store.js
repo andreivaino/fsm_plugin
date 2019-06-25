@@ -42,7 +42,7 @@ export const createDataStore = () => {
   window.data=data;
 
   return {
-    data,
+	data,
 	
     findUsers: (pageIndex, pageSize, sortField, sortDirection) => {
       let items;
@@ -74,5 +74,6 @@ export const createDataStore = () => {
         totalItemCount: items.length,
       };
     },
+	
   };
 };
