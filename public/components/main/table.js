@@ -41,33 +41,10 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      sortField: 'id',
+      sortField: 'firstName',
       sortDirection: 'asc',
     };
-
-    //this.onTableChange = this.onTableChange.bind(this);
-
   }
-
-/*
-  onTableChange = ({ page = {}, sort = {} }) => {
-
-    const { index: pageIndex, size: pageSize } = page;
-
-    const { field: sortField, direction: sortDirection } = sort;
-
-    console.log('onTableChange',  page, sort, pageIndex, pageSize, sortField, sortDirection)
-    
-    this.setState(
-      {
-        pageIndex,
-        pageSize,
-        sortField,
-        sortDirection,
-      }
-    );
-  }
-*/
 
   onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
@@ -81,9 +58,7 @@ export class Table extends Component {
       sortDirection,
     });
   };
-  
-  
-  
+
   render() {
 	  //object destructoring - defines four variables and gets their values from this.state
     const { pageIndex, pageSize, sortField, sortDirection } = this.state;
@@ -96,80 +71,119 @@ export class Table extends Component {
     );
 
     const columns = [
-	  {
-        field: 'id',
-        name: 'id',
-		//dataType: 'date',
+      {
+        field: 'firstName',
+        name: 'First Name',
         sortable: true,
         truncateText: true,
-		//render: date => formatDate(date, 'shortDateTime')
-      },
-	  {
-        field: 'proto',
-        name: 'Protocol',
-        truncateText: false,
-        hideForMobile: false,
         mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'src_ip',
-        name: 'Source IP',
-        truncateText: false,
-		sortable: true,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'src_port',
-        name: 'Source Port',
-        truncateText: false,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'dest_ip',
-        name: 'Destination IP',
-        truncateText: false,
-		sortable: true,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-	  {
-        field: 'dest_port',
-        name: 'Destination Port',
-        truncateText: false,
-        hideForMobile: false,
-        mobileOptions: {
-          show: false,
-        },
-      }, 
-      {
-        field: 'message',
-        name: 'Message',
-        sortable: true,
-        truncateText: false,
-        mobileoptions: {
           render: item => (
             <span>
-              {item.message}
+              {item.firstName} {item.lastName}
             </span>
           ),
           header: false,
-          truncateText: false,  
+          truncateText: false,
           enlarge: true,
           fullWidth: true,
         },
       },
+      {
+        field: 'lastName',
+        name: 'Last Name',
+        sortable: true,
+        truncateText: true,
+        mobileOptions: {
+          show: false,
+        },
+      },
+      {
+        field: 'github',
+        name: (
+          <EuiToolTip content="Their mascot is the Octokitty">
+            <span>
+              Github{' '}
+              <EuiIcon
+                size="s"
+                color="subdued"
+                type="questionInCircle"
+                className="eui-alignTop"
+              />
+            </span>
+          </EuiToolTip>
+        ),
+        sortable: true,
+        render: username => (
+          <EuiLink href={`https://github.com/${username}`} target="_blank">
+            {username}
+          </EuiLink>
+        ),
+      },
+      {
+        field: 'dateOfBirth',
+        name: (
+          <EuiToolTip content="Colloquially known as a 'birthday'">
+            <span>
+              Date of Birth{' '}
+              <EuiIcon
+                size="s"
+                color="subdued"
+                type="questionInCircle"
+                className="eui-alignTop"
+              />
+            </span>
+          </EuiToolTip>
+        ),
+        dataType: 'date',
+        render: date => formatDate(date, 'dobLong'),
+        sortable: true,
+      },
+      {
+        field: 'nationality',
+        name: (
+          <EuiToolTip content="The nation in which this person resides">
+            <span>
+              Nationality{' '}
+              <EuiIcon
+                size="s"
+                color="subdued"
+                type="questionInCircle"
+                className="eui-alignTop"
+              />
+            </span>
+          </EuiToolTip>
+        ),
+        sortable: true,
+        render: countryCode => {
+          const country = store.getCountry(countryCode);
+          return `${country.flag} ${country.name}`;
+        },
+      },
+      {
+        field: 'online',
+        name: (
+          <EuiToolTip content="Free to talk or busy with business">
+            <span>
+              Online{' '}
+              <EuiIcon
+                size="s"
+                color="subdued"
+                type="questionInCircle"
+                className="eui-alignTop"
+              />
+            </span>
+          </EuiToolTip>
+        ),
+        dataType: 'boolean',
+        sortable: true,
+        render: online => {
+          const color = online ? 'success' : 'danger';
+          const label = online ? 'Online' : 'Offline';
+          return <EuiHealth color={color}>{label}</EuiHealth>;
+        },
+      },
     ];
-	
+
     const pagination = {
       pageIndex: pageIndex,
       pageSize: pageSize,
