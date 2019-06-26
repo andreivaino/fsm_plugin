@@ -12,6 +12,7 @@ export default function (server) {
 	//this is a JSON object being sent to server.route
 	server.route({
 		// brackets { } mean it will be automatically parsed as a variable
+		// this is the relative web address which will be contacted to run this query
 		path: '/api/fsm_plugin/pfsenseblocked',
 		method: 'GET',
 		//this is async, so we use await to wait until a value is returned
@@ -29,6 +30,7 @@ export default function (server) {
 				body = body;
 				//console.log(hits);
 			}, function (error) {
+				//send an error message to the console log so we know something went wrong
 				console.trace(error.message);
 			});
 
