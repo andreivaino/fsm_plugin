@@ -2,6 +2,8 @@
 
 > Federated Security Module Plugin
 
+This plugin was developed for Kibana 6.7.1 and displays queries in various tables to assist with identifying Advanced Persistent Security Threats (APST). The main purpose of this plugin is to demonstrate how queries can be used to return data from Elasticsearch and displayed in an interface for the analyst to gather information quickly.
+
 ---
 
 ## development
