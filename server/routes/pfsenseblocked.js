@@ -1,4 +1,9 @@
-// test comment
+/*
+// Blocked incoming packets from known bad sites
+// Returns firewall blocked messages within the last day
+// Uses the “_source” filter to limit what data is returned
+*/
+
 import elasticsearch from 'elasticsearch'
 
 export default function (server) {
@@ -24,7 +29,29 @@ export default function (server) {
 			await client.search({
 				_source: ["@timestamp", "src_ip", "src_port", "proto", "dest_ip", "dest_port", "message"],
 				index: 'pfsense-*',
-				size: 10
+				size: 100,
+				body: {
+					  "query": {
+						"bool": {
+						  "must": [
+							{
+							  "match": {
+								"action": "block"
+							  }
+							}
+						  ],
+						  "filter": [
+							{
+							  "range": {
+								"@timestamp": {
+								  "gte": "now-1d/d"
+								}
+							  }
+							}
+						  ]
+						}
+					  }
+				}
 			}).then(function (body) {
 				hits = body.hits.hits;
 				body = body;
