@@ -1,5 +1,9 @@
-//Example table test!
+/*
 // Source code taken from "Adding sorting to a Basic Table"
+// Code heavily modified for use in project
+*/
+
+
 import React, {Component} from 'react';
 import { formatDate } from '@elastic/eui/lib/services/format';
 import { createDataStore } from './data_store.js';
@@ -11,27 +15,6 @@ import {
   EuiToolTip,
 } from '@elastic/eui';
 
-/*
-Example user object:
-
-{
-  id: '1',
-  firstName: 'john',
-  lastName: 'doe',
-  github: 'johndoe',
-  dateOfBirth: Date.now(),
-  nationality: 'NL',
-  online: true
-}
-
-Example country object:
-
-{
-  code: 'NL',
-  name: 'Netherlands',
-  flag: '????'
-}
-*/
 const store = createDataStore();
 
 export class Table extends Component {
@@ -41,7 +24,7 @@ export class Table extends Component {
     this.state = {
       pageIndex: 0,
       pageSize: 5,
-      sortField: 'id',
+      sortField: 'timestamp',
       sortDirection: 'asc',
     };
 
@@ -72,6 +55,7 @@ export class Table extends Component {
     );
 
     const columns = [
+	/*
 	  {
         field: 'id',
         name: 'Index',
@@ -88,12 +72,12 @@ export class Table extends Component {
           enlarge: true,
           fullWidth: true,
         },
-      },
+      },*/
       {
         field: 'timestamp',
         name: 'Timestamp',
 		dataType: 'date',
-        render: date => formatDate(date, 'iso8601'),
+        render: date => formatDate(date, 'YYYY-MM-DD-HH:MM:SS'),
         sortable: true,
         truncateText: true,
       },
