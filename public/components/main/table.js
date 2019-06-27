@@ -23,9 +23,9 @@ export class Table extends Component {
 
     this.state = {
       pageIndex: 0,
-      pageSize: 5,
+      pageSize: 10,
       sortField: 'timestamp',
-      sortDirection: 'asc',
+      sortDirection: 'des',
     };
 
   }
@@ -173,7 +173,7 @@ export class Table extends Component {
       pageSize: pageSize,               //The maximum number of items that can be shown in a single page
       totalItemCount: totalItemCount,   //The total number of items the page is "sliced" of
       pageSizeOptions: [3, 5, 8],       //Configures the page size dropdown options
-	  hidePerPageOptions: true,         //Hides the page size dropdown
+	  hidePerPageOptions: true,         //Hides the page size dropdown (This was done because it was not working!)
     };
 	
     const sorting = {
@@ -196,5 +196,3 @@ export class Table extends Component {
     );
   }
 }
-
-export default Table;
