@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {
   EuiPage,
   EuiPageHeader,
+  EuiPageHeaderSection,
+  EuiPageContentHeaderSection,
   EuiTitle,
   EuiPageBody,
   EuiPageContent,
@@ -12,16 +14,64 @@ import {
   EuiForm,
   EuiFormRow,
   EuiButton,
+  EuiLink,
 } from '@elastic/eui';
 import { FormattedMessage } from '@kbn/i18n/react';
-import { Table } from './table.js'
+import { Table } from './table.js';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+function Query1() {
+  return (
+    <div>
+          <EuiTitle size="l">
+            <h1>Blocked incoming packets from known bad sites</h1>
+          </EuiTitle>
+	      <Table />
+    </div>
+  );
+}
+
+function Home() {
+  return (
+  <EuiPage>
+    <EuiPageBody>
+      <EuiPageHeader>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+      </EuiPageHeader>
+      <EuiPageContent>
+        <EuiPageContentHeader>
+          <EuiPageContentHeaderSection>
+            <EuiTitle>
+              <h2>Content title</h2>
+            </EuiTitle>
+          </EuiPageContentHeaderSection>
+        </EuiPageContentHeader>
+        <EuiPageContentBody>Content body</EuiPageContentBody>
+      </EuiPageContent>
+    </EuiPageBody>
+  </EuiPage>
+  );
+}
+
+
+
+function Topics() {
+  return (
+    <div>
+      <h2>Topics</h2>
+    </div>
+  );
+}
 
 export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
 
   onSearchTextChange(event) {
 	  this.state.searchTerm = event.target.value;
@@ -46,7 +96,7 @@ export class Main extends React.Component {
       this.setState({ time: resp.data.time });
     });
   }
-  
+
   render() {
 	
     const { title } = this.props;
@@ -77,7 +127,27 @@ export class Main extends React.Component {
             </EuiPageContentHeader>
             <EuiPageContentBody>
 			
-			<Table />
+		   <Router>
+			  <div>
+				<ul>
+				  <li>
+					<Link to="/">Home</Link>
+				  </li>
+				  <li>
+					<Link to="/query1">Blocked incoming packets from known bad sites</Link>
+				  </li>
+				  <li>
+					<Link to="/topics">Topics</Link>
+				  </li>
+				</ul>
+
+				<hr />
+
+				<Route exact path="/" component={Home} />
+				<Route path="/query1" component={Query1} />
+				<Route path="/topics" component={Topics} />
+			  </div>
+			</Router>
 			  
               <EuiText>
                 <h3>
@@ -112,4 +182,6 @@ export class Main extends React.Component {
       </EuiPage>
     );
   }
+  
+
 }
