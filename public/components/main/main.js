@@ -18,6 +18,7 @@ import {
 } from '@elastic/eui';
 import { FormattedMessage } from '@kbn/i18n/react';
 import { Table } from './table.js';
+import { Table2 } from './table2.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Query1() {
@@ -27,6 +28,17 @@ function Query1() {
             <h1>Blocked incoming packets from known bad sites</h1>
           </EuiTitle>
 	      <Table />
+    </div>
+  );
+}
+
+function Query2() {
+  return (
+    <div>
+          <EuiTitle size="l">
+            <h1>Firewall Login Attempts in the last 5 minutes</h1>
+          </EuiTitle>
+	      <Table2 />
     </div>
   );
 }
@@ -137,7 +149,7 @@ export class Main extends React.Component {
 					<Link to="/query1">Blocked incoming packets from known bad sites</Link>
 				  </li>
 				  <li>
-					<Link to="/topics">Topics</Link>
+					<Link to="/query2">Firewall Login Attempts in the last 5 minutes</Link>
 				  </li>
 				</ul>
 
@@ -145,7 +157,7 @@ export class Main extends React.Component {
 
 				<Route exact path="/" component={Home} />
 				<Route path="/query1" component={Query1} />
-				<Route path="/topics" component={Topics} />
+				<Route path="/query2" component={Query2} />
 			  </div>
 			</Router>
 			  
