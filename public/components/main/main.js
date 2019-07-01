@@ -19,6 +19,7 @@ import {
 import { FormattedMessage } from '@kbn/i18n/react';
 import { Table } from './table.js';
 import { Table2 } from './table2.js';
+import { Table3 } from './table3.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Query1() {
@@ -39,6 +40,17 @@ function Query2() {
             <h1>Firewall Login Attempts in the last 5 minutes</h1>
           </EuiTitle>
 	      <Table2 />
+    </div>
+  );
+}
+
+function Query3() {
+  return (
+    <div>
+          <EuiTitle size="l">
+            <h1>HoneyTrap Non-Heartbeat Events in the last 90 days</h1>
+          </EuiTitle>
+	      <Table3 />
     </div>
   );
 }
@@ -151,6 +163,9 @@ export class Main extends React.Component {
 				  <li>
 					<Link to="/query2">Firewall Login Attempts in the last 5 minutes</Link>
 				  </li>
+				  <li>
+					<Link to="/query3">HoneyTrap Non-Heartbeat Events in the last 90 days</Link>
+				  </li>
 				</ul>
 
 				<hr />
@@ -158,6 +173,7 @@ export class Main extends React.Component {
 				<Route exact path="/" component={Home} />
 				<Route path="/query1" component={Query1} />
 				<Route path="/query2" component={Query2} />
+				<Route path="/query3" component={Query3} />
 			  </div>
 			</Router>
 			  

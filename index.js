@@ -1,6 +1,7 @@
 import exampleRoute from './server/routes/example';
 import pfSenseBlockedRoute from './server/routes/pfsenseblocked';
 import firewallLoginAttempts from './server/routes/firewallloginattempts';
+import honeyTrapNonHeartBeat from './server/routes/honeytrapnonheartbeat';
 
 export default function (kibana) {
   return new kibana.Plugin({
@@ -30,6 +31,7 @@ export default function (kibana) {
       	exampleRoute(server);
 		pfSenseBlockedRoute(server);
 		firewallLoginAttempts(server);
+		honeyTrapNonHeartBeat(server);
     }
   });
 }
