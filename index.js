@@ -1,4 +1,4 @@
-import exampleRoute from './server/routes/example';
+//import exampleRoute from './server/routes/example';
 import pfSenseBlockedRoute from './server/routes/pfsenseblocked';
 import firewallLoginAttempts from './server/routes/firewallloginattempts';
 import honeyTrapNonHeartBeat from './server/routes/honeytrapnonheartbeat';
@@ -15,7 +15,7 @@ export default function (kibana) {
       },
       hacks: [
         'plugins/fsm_plugin/hack',
-	'plugins/fsm_plugin/hack2'
+		'plugins/fsm_plugin/hack2'
       ],
       styleSheetPaths: require('path').resolve(__dirname, 'public/app.scss'),
     },
@@ -28,7 +28,7 @@ export default function (kibana) {
 
     init(server, options) { // eslint-disable-line no-unused-vars
       // Add server routes and initialize the plugin here
-      	exampleRoute(server);
+      //	exampleRoute(server);
 		pfSenseBlockedRoute(server);
 		firewallLoginAttempts(server);
 		honeyTrapNonHeartBeat(server);
