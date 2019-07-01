@@ -41,22 +41,22 @@ const getQueryData = (url) => {
   data.forEach(function (item, index){
     re_data.push({
 		id : index,
-		date : item._source.date,
-        source-ip : item._source.source-ip,
-        source-port : item._source.source-port,
-		destination-ip: item._source.destination-ip,
-        destination-port: item._source.destination-port,
-        category : item._source.category,
-        type : item._source.type 
+		date : item._source['date'],
+        source_ip : item._source['source-ip'],
+        source_port : item._source['source-port'],
+		destination_ip: item._source['destination-ip'],
+        destination_port: item._source['destination-port'],
+        category : item._source['category'],
+        type : item._source['type'] 
       })
   });
   console.log('results:' + re_data.length);
-
+  console.log(re_data);
   return re_data;
   
 }
 
-export const createDataStore = () => {
+export const createDataStore3 = () => {
 
   const data = getQueryData('../api/fsm_plugin/honeytrapnonheartbeat'); 
   //can type data in console to return values

@@ -25,7 +25,7 @@ export class Table extends Component {
       pageIndex: 0,
       pageSize: 10,
       sortField: 'timestamp',
-      sortDirection: 'des',
+      sortDirection: 'desc',
     };
 
   }

@@ -6,7 +6,7 @@
 
 import React, {Component} from 'react';
 import { formatDate } from '@elastic/eui/lib/services/format';
-import { createDataStore } from './data_store3.js';
+import { createDataStore3 } from './data_store3.js';
 import {
   EuiBasicTable,
   EuiHealth,
@@ -15,9 +15,9 @@ import {
   EuiToolTip,
 } from '@elastic/eui';
 
-const store = createDataStore();
+const store = createDataStore3();
 
-export class Table extends Component {
+export class Table3 extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,7 @@ export class Table extends Component {
       pageIndex: 0,
       pageSize: 10,
       sortField: 'date',
-      sortDirection: 'des',
+      sortDirection: 'desc',
     };
 
   }
@@ -82,14 +82,14 @@ export class Table extends Component {
         truncateText: true,
       },
       {
-        field: 'source-ip', //variable name
+        field: 'source_ip', //variable name
         name: 'Source IP',  //name of the column
         sortable: true,
         truncateText: true,
         mobileOptions: { //might be used for mobile data showing
           render: item => (
             <span>
-              {item.source-ip}
+              {item.source_ip}
             </span>
           ),
           header: false,
@@ -99,14 +99,14 @@ export class Table extends Component {
         },
       },
 	  {
-        field: 'source-port',
+        field: 'source_port',
         name: 'Source Port',
         sortable: true,
         truncateText: true,
         mobileOptions: {
           render: item => (
             <span>
-              {item.source-port}
+              {item.source_port}
             </span>
           ),
           header: false,
@@ -116,14 +116,14 @@ export class Table extends Component {
         },
       },
 	        {
-        field: 'destination-ip', //variable name
+        field: 'destination_ip', //variable name
         name: 'Destination IP',  //name of the column
         sortable: true,
         truncateText: true,
         mobileOptions: { //might be used for mobile data showing
           render: item => (
             <span>
-              {item.destination-ip}
+              {item.destination_ip}
             </span>
           ),
           header: false,
@@ -133,14 +133,14 @@ export class Table extends Component {
         },
       },
 	  {
-        field: 'destination-port',
+        field: 'destination_port',
         name: 'Destination Port',
         sortable: true,
         truncateText: true,
         mobileOptions: {
           render: item => (
             <span>
-              {item.destination-port}
+              {item.destination_port}
             </span>
           ),
           header: false,

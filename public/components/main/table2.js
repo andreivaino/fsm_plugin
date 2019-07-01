@@ -6,7 +6,7 @@
 
 import React, {Component} from 'react';
 import { formatDate } from '@elastic/eui/lib/services/format';
-import { createDataStore } from './data_store2.js';
+import { createDataStore2 } from './data_store2.js';
 import {
   EuiBasicTable,
   EuiHealth,
@@ -15,9 +15,9 @@ import {
   EuiToolTip,
 } from '@elastic/eui';
 
-const store = createDataStore();
+const store = createDataStore2();
 
-export class Table extends Component {
+export class Table2 extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,7 @@ export class Table extends Component {
       pageIndex: 0,
       pageSize: 10,
       sortField: 'timestamp',
-      sortDirection: 'des',
+      sortDirection: 'desc',
     };
 
   }

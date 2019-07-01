@@ -55,42 +55,6 @@ function Query3() {
   );
 }
 
-function Home() {
-  return (
-  <EuiPage>
-    <EuiPageBody>
-      <EuiPageHeader>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-      </EuiPageHeader>
-      <EuiPageContent>
-        <EuiPageContentHeader>
-          <EuiPageContentHeaderSection>
-            <EuiTitle>
-              <h2>Content title</h2>
-            </EuiTitle>
-          </EuiPageContentHeaderSection>
-        </EuiPageContentHeader>
-        <EuiPageContentBody>Content body</EuiPageContentBody>
-      </EuiPageContent>
-    </EuiPageBody>
-  </EuiPage>
-  );
-}
-
-
-
-function Topics() {
-  return (
-    <div>
-      <h2>Topics</h2>
-    </div>
-  );
-}
-
 export class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -132,7 +96,7 @@ export class Main extends React.Component {
               <h1>
                 <FormattedMessage
                   id="fsmPlugin.helloWorldText"
-                  defaultMessage="{title} Hello World!"
+                  defaultMessage="{title} Query Dashboard"
                   values={{ title }}
                 />
               </h1>
@@ -141,12 +105,12 @@ export class Main extends React.Component {
           <EuiPageContent>
             <EuiPageContentHeader>
               <EuiTitle>
-                <h2>
+                <h3>
                   <FormattedMessage
                     id="fsmPlugin.congratulationsTitle"
-                    defaultMessage="Congratulations"
+                    defaultMessage="Please select a query to display the corresponding table:"
                   />
-                </h2>
+                </h3>
               </EuiTitle>
             </EuiPageContentHeader>
             <EuiPageContentBody>
@@ -154,9 +118,6 @@ export class Main extends React.Component {
 		   <Router>
 			  <div>
 				<ul>
-				  <li>
-					<Link to="/">Home</Link>
-				  </li>
 				  <li>
 					<Link to="/query1">Blocked incoming packets from known bad sites</Link>
 				  </li>
@@ -170,18 +131,30 @@ export class Main extends React.Component {
 
 				<hr />
 
-				<Route exact path="/" component={Home} />
 				<Route path="/query1" component={Query1} />
 				<Route path="/query2" component={Query2} />
 				<Route path="/query3" component={Query3} />
 			  </div>
 			</Router>
-			  
+		
+		
+            </EuiPageContentBody>
+          </EuiPageContent>
+        </EuiPageBody>
+      </EuiPage>
+    );
+  }
+  
+
+}
+
+
+/*
               <EuiText>
                 <h3>
                   <FormattedMessage
                     id="fsmPlugin.congratulationsText"
-                    defaultMessage="You have successfully created your first Kibana Plugin!"
+                    defaultMessage=""
                   />
                 </h3>
                 <p>
@@ -203,13 +176,4 @@ export class Main extends React.Component {
 		Search
 		</EuiButton>
 		</EuiForm>
-		
-            </EuiPageContentBody>
-          </EuiPageContent>
-        </EuiPageBody>
-      </EuiPage>
-    );
-  }
-  
-
-}
+*/

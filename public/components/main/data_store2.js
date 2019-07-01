@@ -56,7 +56,7 @@ const getQueryData = (url) => {
   
 }
 
-export const createDataStore = () => {
+export const createDataStore2 = () => {
 
   const data = getQueryData('../api/fsm_plugin/firewallloginattempts'); 
   //can type data in console to return values
