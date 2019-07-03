@@ -55,8 +55,8 @@ export class Table2 extends Component {
     );
 
     const columns = [
-	/*
-	  {
+      /*
+      {
         field: 'id',
         name: 'Index',
         sortable: true,
@@ -76,7 +76,7 @@ export class Table2 extends Component {
       {
         field: 'timestamp',
         name: 'Timestamp',
-		dataType: 'date',
+		    dataType: 'date',
         render: date => formatDate(date, 'YYYY-MM-DD-HH:MM:SS'),
         sortable: true,
         truncateText: true,
@@ -98,7 +98,7 @@ export class Table2 extends Component {
           fullWidth: true,
         },
       },
-	  {
+      {
         field: 'src_port',
         name: 'Source Port',
         sortable: true,
@@ -115,7 +115,7 @@ export class Table2 extends Component {
           fullWidth: true,
         },
       },
-	        {
+	    {
         field: 'dest_ip', //variable name
         name: 'Destination IP',  //name of the column
         sortable: true,
@@ -132,7 +132,7 @@ export class Table2 extends Component {
           fullWidth: true,
         },
       },
-	  {
+	    {
         field: 'dest_port',
         name: 'Destination Port',
         sortable: true,
@@ -149,7 +149,7 @@ export class Table2 extends Component {
           fullWidth: true,
         },
       },
-	  {
+	    {
         field: 'message',
         name: 'Message',
         sortable: true,

@@ -44,8 +44,7 @@ export default function (server) {
 								{
 								  "range": {
 									"@timestamp": {
-									  "gte": "now-1d/d",
-									  "lt": "now/d"
+									  "gte": "now-90d/d"
 									}
 								  }
 								}

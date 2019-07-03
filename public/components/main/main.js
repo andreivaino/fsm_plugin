@@ -20,7 +20,7 @@ import { FormattedMessage } from '@kbn/i18n/react';
 import { Table } from  './table.js';
 import { Table2 } from './table2.js';
 import { Table3 } from './table3.js';
-import { Table4 } from './table4.js'; 
+import { Table4 } from './table4.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Query1() {
@@ -56,7 +56,7 @@ function Query2() {
 }
 
 function Query3 (){
-  return { 
+  return {
     render : () => {
       console.log('Query3')
       return (
@@ -86,7 +86,6 @@ function Query4 (){
     }
   }
 }
-
 
 export class Main extends React.Component {
   constructor(props) {
@@ -161,7 +160,7 @@ export class Main extends React.Component {
                   	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last 90 days</Link>
                     </li>
 		    <li>
-                           <Link to="/query4">Snort Messages for the last day</Link>
+			   <Link to="/query4">Snort Messages for the last day</Link>
 		    </li>
                   </ul>
 
@@ -171,7 +170,6 @@ export class Main extends React.Component {
                   <Route path="/query2" component={Query2} />
                   <Route path="/query3" component={Query3} />
 		  <Route path="/query4" component={Query4} />
-
                 </div>
               </Router>
 		

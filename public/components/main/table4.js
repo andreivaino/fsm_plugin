@@ -3,7 +3,6 @@
 // Code heavily modified for use in project
 */
 
-
 import React, {Component} from 'react';
 import { formatDate } from '@elastic/eui/lib/services/format';
 import { createDataStore4 } from './data_store4.js';
@@ -27,7 +26,6 @@ export class Table4 extends Component {
       sortField: 'timestamp',
       sortDirection: 'desc',
     };
-
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
@@ -55,7 +53,7 @@ export class Table4 extends Component {
     );
 
     const columns = [
-	/*
+	  /*
 	  {
         field: 'id',
         name: 'Index',
@@ -80,23 +78,12 @@ export class Table4 extends Component {
         render: date => formatDate(date, 'YYYY-MM-DD-HH:MM:SS'),
         sortable: true,
         truncateText: true,
-      }, 
-	{
+      },
+	  {
         field: 'message',
         name: 'Message',
         sortable: true,
         truncateText: false,
-        mobileOptions: {
-          render: item => (
-            <span>
-              {item.message}
-            </span>
-          ),
-          header: false,
-          truncateText: false,  
-          enlarge: true,
-          fullWidth: true,
-        },
       },
     ];
 

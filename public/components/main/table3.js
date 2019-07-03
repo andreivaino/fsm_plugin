@@ -3,7 +3,6 @@
 // Code heavily modified for use in project
 */
 
-
 import React, {Component} from 'react';
 import { formatDate } from '@elastic/eui/lib/services/format';
 import { createDataStore3 } from './data_store3.js';
@@ -27,7 +26,6 @@ export class Table3 extends Component {
       sortField: 'date',
       sortDirection: 'desc',
     };
-
   }
 
   onTableChange = ({ page = {}, sort = {} }) => {
@@ -46,8 +44,8 @@ export class Table3 extends Component {
   render() {
 	  //object destructoring - defines four variables and gets their values from this.state
     const { pageIndex, pageSize, sortField, sortDirection } = this.state;
-   
-   const { pageOfItems, totalItemCount } = store.findUsers(
+    //console.log('Table3 - Render')
+    const { pageOfItems, totalItemCount } = store.findUsers(
       pageIndex,
       pageSize,
       sortField,
@@ -55,8 +53,8 @@ export class Table3 extends Component {
     );
 
     const columns = [
-	/*
-	  {
+      /*
+      {
         field: 'id',
         name: 'Index',
         sortable: true,
@@ -98,24 +96,12 @@ export class Table3 extends Component {
           fullWidth: true,
         },
       },
-	  {
+      {
         field: 'source_port',
         name: 'Source Port',
         sortable: true,
-        truncateText: true,
-        mobileOptions: {
-          render: item => (
-            <span>
-              {item.source_port}
-            </span>
-          ),
-          header: false,
-          truncateText: false,  
-          enlarge: true,
-          fullWidth: true,
-        },
       },
-	        {
+	    {
         field: 'destination_ip', //variable name
         name: 'Destination IP',  //name of the column
         sortable: true,
@@ -132,24 +118,13 @@ export class Table3 extends Component {
           fullWidth: true,
         },
       },
-	  {
+      {
         field: 'destination_port',
         name: 'Destination Port',
         sortable: true,
-        truncateText: true,
-        mobileOptions: {
-          render: item => (
-            <span>
-              {item.destination_port}
-            </span>
-          ),
-          header: false,
-          truncateText: false,  
-          enlarge: true,
-          fullWidth: true,
-        },
+
       },
-	  {
+      {
         field: 'category',
         name: 'Category',
         sortable: true,
@@ -166,7 +141,7 @@ export class Table3 extends Component {
           fullWidth: true,
         },
       },
-	  {
+      {
         field: 'type',
         name: 'Type',
         sortable: true,

@@ -43,15 +43,14 @@ const getQueryData = (url) => {
 		id : index,
 		date : item._source['date'],
         source_ip : item._source['source-ip'],
-        source_port : item._source['source-port'],
+        source_port : item._source['source-port'], // returns a number
 		destination_ip: item._source['destination-ip'],
-        destination_port: item._source['destination-port'],
+        destination_port: item._source['destination-port'],  // returns a number
         category : item._source['category'],
         type : item._source['type'] 
       })
   });
   console.log('results:' + re_data.length);
-  console.log(re_data);
   return re_data;
   
 }

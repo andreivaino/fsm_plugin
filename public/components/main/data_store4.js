@@ -41,8 +41,8 @@ const getQueryData = (url) => {
   data.forEach(function (item, index){
     re_data.push({
         id : index,
-	timestamp : item._source['@timestamp'],
-        message : item._source.message 
+	    timestamp : item._source['@timestamp'],
+        message : item._source.message
       })
   });
   console.log('results:' + re_data.length);
