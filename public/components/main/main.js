@@ -21,6 +21,7 @@ import { Table } from  './table.js';
 import { Table2 } from './table2.js';
 import { Table3 } from './table3.js';
 import { Table4 } from './table4.js';
+import { Table5 } from './table5.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function Query1() {
@@ -81,6 +82,22 @@ function Query4 (){
               <h1>Snort Messages for the last day</h1>
             </EuiTitle>
           <Table4 />
+        </div>
+      );
+    }
+  }
+}
+
+function Query5 (){
+  return {
+    render : () => {
+      console.log('Query5')
+      return (
+        <div>
+            <EuiTitle size="l">
+              <h1>Windows Defender Malware Detected</h1>
+            </EuiTitle>
+          <Table5 />
         </div>
       );
     }
@@ -159,9 +176,12 @@ export class Main extends React.Component {
                     <li>
                   	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last 90 days</Link>
                     </li>
-		    <li>
-			   <Link to="/query4">Snort Messages for the last day</Link>
-		    </li>
+					<li>
+					   <Link to="/query4">Snort Messages for the last day</Link>
+					</li>
+					<li>
+					   <Link to="/query5">Windows Defender Malware detected in last days</Link>
+					</li>
                   </ul>
 
                   <hr />
@@ -169,7 +189,8 @@ export class Main extends React.Component {
                   <Route path="/query1" component={Query1} />
                   <Route path="/query2" component={Query2} />
                   <Route path="/query3" component={Query3} />
-		  <Route path="/query4" component={Query4} />
+				  <Route path="/query4" component={Query4} />
+				  <Route path="/query4" component={Query5} />
                 </div>
               </Router>
 		
