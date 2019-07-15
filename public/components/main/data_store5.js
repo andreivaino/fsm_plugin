@@ -42,12 +42,12 @@ const getQueryData = (url) => {
     re_data.push({
 		id : index,
 		date : item._source['@timestamp'],
-        agent_ip : item._source['agent.ip'],
-        agent_name : item._source['agent.name'],
-		threat_name: item._source['data.win.eventdata.threat Name'],
-        message: item._source['data.win.system.message'],
-        path : item._source['data.win.eventdata.path'],
-        category : item._source['data.win.eventdata.category Name'] 
+        agent_ip : item._source.agent.ip,
+        agent_name : item._source.agent.name,
+		threat_name: item._source.data.win.eventdata['threat Name'],
+        message: item._source.data.win.system.message,
+        path : item._source.data.win.eventdata.path,
+        category : item._source.data.win.eventdata['category Name'] 
       })
   });
   console.log('results:' + re_data.length);
