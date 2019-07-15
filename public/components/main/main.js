@@ -190,7 +190,7 @@ export class Main extends React.Component {
                   <Route path="/query2" component={Query2} />
                   <Route path="/query3" component={Query3} />
 				  <Route path="/query4" component={Query4} />
-				  <Route path="/query4" component={Query5} />
+				  <Route path="/query5" component={Query5} />
                 </div>
               </Router>
 		
