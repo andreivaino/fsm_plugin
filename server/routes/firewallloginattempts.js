@@ -1,5 +1,5 @@
 /*
-// Returns firewall messages within the 5 minutes of blocked connection attempts on port 22
+// Returns firewall messages within the last 30 minutes of blocked connection attempts on port 22
 // Uses the “_source” filter to limit what data is returned to relevant fields
 // Assume the firewall has IP 192.168.1.1
 */
@@ -54,7 +54,7 @@ export default function (server) {
 							{
 							  "range": {
 								"@timestamp": {
-								  "gt": "now-5m"
+								  "gt": "now-30m"
 								}
 							  }
 							}

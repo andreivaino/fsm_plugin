@@ -1,5 +1,6 @@
 /*
-// Simple Query to Find Non-Heartbeat Events That Happened in the last 90 days
+// Simple Query to Find Non-Heartbeat Events That Happened in the last 3 days
+// Uses the “_source” filter to limit what data is returned to relevant fields
 */
 
 import elasticsearch from 'elasticsearch'
@@ -27,7 +28,7 @@ export default function (server) {
 			await client.search({
 				_source: ["date", "source-ip", "source-port", "destination-ip", "destination-port", "category", "type"],
 				index: 'honeytrap',
-				size: 100,
+				size: 1000,
 				body: {
 					  "query": {
 						"bool": {
@@ -42,7 +43,7 @@ export default function (server) {
 							{
 							  "range": {
 								"date": {
-								  "gte": "now-90d/d"
+								  "gte": "now-3d/d"
 								}
 							  }
 							}

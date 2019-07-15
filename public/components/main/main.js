@@ -168,19 +168,19 @@ export class Main extends React.Component {
                 <div>
                   <ul>
                     <li>
-                  	   <Link to="/query1">Blocked incoming packets from known bad sites</Link>
+                  	   <Link to="/query1">Blocked incoming packets from known bad sites in the last day</Link>
                     </li>
                     <li>
-                  	   <Link to="/query2">Firewall Login Attempts in the last 5 minutes</Link>
+                  	   <Link to="/query2">Firewall Login Attempts in the last twenty minutes</Link>
                     </li>
                     <li>
-                  	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last 90 days</Link>
+                  	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last three days</Link>
                     </li>
 					<li>
 					   <Link to="/query4">Snort Messages for the last day</Link>
 					</li>
 					<li>
-					   <Link to="/query5">Windows Defender Malware detected in last days</Link>
+					   <Link to="/query5">Windows Defender Malware detected in the last five days</Link>
 					</li>
                   </ul>
 

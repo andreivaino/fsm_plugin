@@ -29,7 +29,7 @@ export default function (server) {
 			await client.search({
 				_source: ["@timestamp", "src_ip", "src_port", "proto", "dest_ip", "dest_port", "message"],
 				index: 'pfsense-*',
-				size: 100,
+				size: 1000,
 				body: {
 					  "query": {
 						"bool": {
