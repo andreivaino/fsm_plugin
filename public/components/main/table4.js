@@ -75,7 +75,7 @@ export class Table4 extends Component {
         field: 'timestamp',
         name: 'Timestamp',
 		dataType: 'date',
-        render: date => formatDate(date, 'YYYY-MM-DD-HH:MM:SS'),
+        render: date => formatDate(date, 'YYYY-MM-DD-HH:mm:ss'),
         sortable: true,
         truncateText: true,
       },
