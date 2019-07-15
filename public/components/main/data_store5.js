@@ -55,7 +55,7 @@ const getQueryData = (url) => {
   
 }
 
-export const createDataStore3 = () => {
+export const createDataStore5 = () => {
 
   const data = getQueryData('../api/fsm_plugin/windowsdefendermalware'); 
   //can type data in console to return values
