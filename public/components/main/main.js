@@ -1,3 +1,10 @@
+/*
+// Displays the main page of the plugin
+// Each item is a React Component which can be accessed through the React Router.
+// User clicks on each search heading to have it displayed in the browser Window.
+//
+*/
+
 import React, {Component} from 'react';
 import {
   EuiPage,
@@ -24,6 +31,7 @@ import { Table4 } from './table4.js';
 import { Table5 } from './table5.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+// Displays the Query1
 function Query1() {
   return {
     render : () => {
@@ -40,6 +48,7 @@ function Query1() {
   }
 }
 
+// Displays the Query2
 function Query2() {
   return {
     render : () => {
@@ -47,7 +56,7 @@ function Query2() {
       return (
         <div>
               <EuiTitle size="l">
-                <h1>Firewall Login Attempts in the last 5 minutes</h1>
+                <h1>Firewall Login Attempts</h1>
               </EuiTitle>
     	      <Table2 />
         </div>
@@ -56,6 +65,7 @@ function Query2() {
   }
 }
 
+// Displays the Query3
 function Query3 (){
   return {
     render : () => {
@@ -63,7 +73,7 @@ function Query3 (){
       return (
         <div>
             <EuiTitle size="l">
-              <h1>HoneyTrap Non-Heartbeat Events in the last 90 days</h1>
+              <h1>HoneyTrap Non-Heartbeat Events</h1>
             </EuiTitle>
           <Table3 />
         </div>
@@ -72,6 +82,7 @@ function Query3 (){
   }
 }
 
+// Displays the Query4
 function Query4 (){
   return {
     render : () => {
@@ -79,7 +90,7 @@ function Query4 (){
       return (
         <div>
             <EuiTitle size="l">
-              <h1>Snort Messages for the last day</h1>
+              <h1>Snort Messages</h1>
             </EuiTitle>
           <Table4 />
         </div>
@@ -88,6 +99,7 @@ function Query4 (){
   }
 }
 
+// Displays the Query5
 function Query5 (){
   return {
     render : () => {
@@ -95,7 +107,7 @@ function Query5 (){
       return (
         <div>
             <EuiTitle size="l">
-              <h1>Windows Defender Malware Detected</h1>
+              <h1>Windows Defender Detected Malware</h1>
             </EuiTitle>
           <Table5 />
         </div>
@@ -108,30 +120,6 @@ export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
-
-  onSearchTextChange(event) {
-	  this.state.searchTerm = event.target.value;
-  }
-
-  searchData(){
-	const { httpClient } = this.props;
-    	httpClient.get('../api/fsm_plugin/pfsenseblocked/'+this.state.searchTerm).then((response) => {
-      		this.setState({ resp: response.data });
-		//window.alert(this.state.resp); //return in browser pop-up Window
-		//console.log(this.state.resp); //return in console
-  	});
-  }
-
-  componentDidMount() {
-    /*
-       FOR EXAMPLE PURPOSES ONLY.  There are much better ways to
-       manage state and update your UI than this.
-    */
-    const { httpClient } = this.props;
-    httpClient.get('../api/fsm_plugin/example').then((resp) => {
-      this.setState({ time: resp.data.time });
-    });
   }
 
   render() {
@@ -180,7 +168,7 @@ export class Main extends React.Component {
 					   <Link to="/query4">Snort Messages for the last day</Link>
 					</li>
 					<li>
-					   <Link to="/query5">Windows Defender Malware detected in the last five days</Link>
+					   <Link to="/query5">Windows Defender Detected Malware in the last five days</Link>
 					</li>
                   </ul>
 
@@ -201,36 +189,5 @@ export class Main extends React.Component {
       </EuiPage>
     );
   }
-  
-
 }
 
-
-/*
-              <EuiText>
-                <h3>
-                  <FormattedMessage
-                    id="fsmPlugin.congratulationsText"
-                    defaultMessage=""
-                  />
-                </h3>
-                <p>
-                  <FormattedMessage
-                    id="fsmPlugin.serverTimeText"
-                    defaultMessage="The server time (via API call) is {time}"
-                    values={{ time: this.state.time || 'NO API CALL YET' }}
-                  />
-                </p>
-              </EuiText>
-	      <EuiForm>
-		<EuiFormRow
-			label="Search Field"
-			helpText="Please enter search value"
-		>
-		<EuiFieldText name="search_term" onChange={(event) => this.onSearchTextChange(event)}/>
-		</EuiFormRow>
-		<EuiButton  fill onClick={() => this.searchData()}>
-		Search
-		</EuiButton>
-		</EuiForm>
-*/
