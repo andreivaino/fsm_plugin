@@ -159,7 +159,7 @@ export class Main extends React.Component {
                   	   <Link to="/query1">Blocked incoming packets from known bad sites in the last day</Link>
                     </li>
                     <li>
-                  	   <Link to="/query2">Firewall Login Attempts in the last twenty minutes</Link>
+                  	   <Link to="/query2">Firewall Login Attempts in the last thirty minutes</Link>
                     </li>
                     <li>
                   	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last three days</Link>
