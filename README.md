@@ -4,6 +4,20 @@
 
 This plugin was developed for Kibana 6.7.1 and displays queries in various tables to assist with identifying Advanced Persistent Security Threats (APST). The main purpose of this plugin is to demonstrate how queries can be used to return data from Elasticsearch and displayed in an interface for the analyst to gather information quickly.
 
+## Examples of Query Screens
+
+When you first open up the plugin it will display a list of the available queries.  You can activate a query by clicking on it.
+
+![Default Query Selection Screen](./images/fsm_plugin_Query_Dashboard.PNG "Default Query Selection Screen")
+
+Some queries may not have any data associated with them and will return an empty result.
+
+![Empty Query](./images/fsm_plugin_Query_Dashboard_Empty_Result.PNG "Empty Query")
+
+If the query returns data, it will be displayed in multi-page table.  All queries are returned in reverse chronological order from the most recent event to the oldest event.
+
+![Query Returning Data](./images/fsm_plugin_Query_Dashboard_Good_Result.PNG "Query Returning Data")
+
 ---
 
 ## development
