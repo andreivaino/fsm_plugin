@@ -29,6 +29,7 @@ import { Table2 } from './table2.js';
 import { Table3 } from './table3.js';
 import { Table4 } from './table4.js';
 import { Table5 } from './table5.js';
+import { Table6 } from './table6.js';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // Displays the Query1
@@ -116,6 +117,24 @@ function Query5 (){
   }
 }
 
+// Displays the Query6
+function Query6 (){
+  return {
+    render : () => {
+      console.log('Query6')
+      return (
+        <div>
+            <EuiTitle size="l">
+              <h1>Combined Snort Blocked and HoneyTrap Non-Heartbeat Events</h1>
+            </EuiTitle>
+          <Table6 />
+        </div>
+      );
+    }
+  }
+}
+
+
 export class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -164,12 +183,16 @@ export class Main extends React.Component {
                     <li>
                   	   <Link to="/query3">HoneyTrap Non-Heartbeat Events in the last three days</Link>
                     </li>
-					<li>
-					   <Link to="/query4">Snort Messages for the last day</Link>
-					</li>
-					<li>
-					   <Link to="/query5">Windows Defender Detected Malware in the last five days</Link>
-					</li>
+                    <li>
+                           <Link to="/query4">Snort Messages for the last day</Link>
+                    </li>
+                    <li>
+                           <Link to="/query5">Windows Defender Detected Malware in the last five days</Link>
+                    </li>
+                    <li>
+                           <Link to="/query6">HoneyTrap Non-HeartBeat Events and Snort Messages</Link>
+                    </li>
+
                   </ul>
 
                   <hr />
@@ -177,8 +200,9 @@ export class Main extends React.Component {
                   <Route path="/query1" component={Query1} />
                   <Route path="/query2" component={Query2} />
                   <Route path="/query3" component={Query3} />
-				  <Route path="/query4" component={Query4} />
-				  <Route path="/query5" component={Query5} />
+                  <Route path="/query4" component={Query4} />
+                  <Route path="/query5" component={Query5} />
+                  <Route path="/query6" component={Query6} />
                 </div>
               </Router>
 		
