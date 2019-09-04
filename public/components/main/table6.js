@@ -14,7 +14,7 @@ import {
   EuiToolTip,
 } from '@elastic/eui';
 
-const store = createDataStore3();
+const store = createDataStore6();
 
 export class Table3 extends Component {
   constructor(props) {
