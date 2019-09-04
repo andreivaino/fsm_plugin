@@ -1,8 +1,11 @@
+//Single index queries
 import pfSenseBlockedRoute from './server/routes/pfsenseblocked';
 import firewallLoginAttempts from './server/routes/firewallloginattempts';
 import honeyTrapNonHeartBeat from './server/routes/honeytrapnonheartbeat';
 import snortMessages from './server/routes/snortmessages';
 import windowsDefenderMalware from './server/routes/windowsdefendermalware';
+//Add multi (cross)-index queries
+import honeySnort from './server/routes/honeysnort';
 
 export default function (kibana) {
   return new kibana.Plugin({
@@ -33,6 +36,7 @@ export default function (kibana) {
 		honeyTrapNonHeartBeat(server);
 		snortMessages(server);
 		windowsDefenderMalware(server);
+		honeySnort(server);
     }
   });
 }
