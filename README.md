@@ -18,6 +18,8 @@ If the query returns data, it will be displayed in multi-page table.  All querie
 
 ![Query Returning Data](./images/fsm_plugin_Query_Dashboard_Good_Result.PNG "Query Returning Data")
 
+
+{%
 ---
 
 ## development
@@ -51,3 +53,4 @@ See the [kibana contributing guide](https://github.com/elastic/kibana/blob/maste
     Run the server tests using mocha.
 
 For more information about any of these commands run `yarn ${task} --help`. For a full list of tasks checkout the `package.json` file, or run `yarn run`.
+%}
